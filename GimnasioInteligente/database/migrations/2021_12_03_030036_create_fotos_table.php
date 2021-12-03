@@ -17,6 +17,7 @@ class CreateFotosTable extends Migration
             $table->id();
             $table->bigInteger("idEjercicio")->unsigned();
             $table->foreign("idEjercicio")->references("id")->on("ejercicios")->onDelete("cascade");
+            $table->string("direccion", 100);
             $table->timestamps();
         });
     }
