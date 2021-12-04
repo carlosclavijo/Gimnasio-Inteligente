@@ -2,15 +2,14 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\UserController;
-use \App\Http\Controllers\RutinaController;
-use \App\Http\Controllers\EjercicioController;
-use \App\Http\Controllers\FotoController;
-use \App\Http\Controllers\NotificacionController;
-use \App\Http\Controllers\SuscripcionController;
-use \App\Http\Controllers\RutinaHasEjercicioController;
-use \App\Http\Controllers\RutinaHasPuntuacionController;
-use \App\Http\Controllers\EjercicioHasPuntuacionController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\RutinaController;
+use App\Http\Controllers\EjercicioController;
+use App\Http\Controllers\FotoController;
+use App\Http\Controllers\NotificacionController;
+use App\Http\Controllers\SuscripcionController;
+use App\Http\Controllers\RutinaHasEjercicioController;
+use App\Http\Controllers\EjercicioHasPuntuacionController;
 
 /*
 |--------------------------------------------------------------------------
