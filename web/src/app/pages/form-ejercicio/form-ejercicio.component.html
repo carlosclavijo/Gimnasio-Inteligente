@@ -1,0 +1,14 @@
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <div class="fadeIn first">
+        <h2>Registro Ejercicio</h2>
+    </div>
+    <form>
+        <input type="text" [(ngModel)]="objEjercicio.nombre" class="fadeIn second" name="ejercicio" placeholder="Ejercicio">
+        <input type="text" [(ngModel)]="objEjercicio.musculos" class="fadeIn second" name="musculos" placeholder="Músculos">
+        <input type="text" [(ngModel)]="objEjercicio.descripcion" class="fadeIn second" name="descripcion" placeholder="Descripción">
+        <input type="file" (change)="subirFoto($event)" multiple/>
+        <input type="submit" (click)="insert()" class="fadeIn fourth" value="Log In">
+    </form>
+    </div>
+</div>

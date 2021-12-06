@@ -48,7 +48,6 @@ Route::get('/ejercicio/{id}', [EjercicioController::class, 'show']);
 Route::post('/ejercicio', [EjercicioController::class, 'store']);
 Route::put('/ejercicio/{id}', [EjercicioController::class, 'update']);
 Route::delete('/ejercicio/{id}', [EjercicioController::class, 'destroy']);
-Route::post('ejercicio/subirFotos/{id}', [EjercicioController::class,'subirFoto']);
 
 //Fotos
 Route::get('/foto', [FotoController::class, 'index']);
@@ -56,6 +55,7 @@ Route::get('/foto/{id}', [FotoController::class, 'show']);
 Route::post('/foto', [FotoController::class, 'store']);
 Route::put('/foto/{id}', [FotoController::class, 'update']);
 Route::delete('/foto/{id}', [FotoController::class, 'destroy']);
+Route::post('/foto/subirFotos/{id}', [FotoController::class,'subirFoto']);
 
 //Suscripcion
 Route::get('/suscripcion', [SuscripcionController::class, 'index']);

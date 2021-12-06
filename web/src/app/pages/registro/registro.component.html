@@ -1,0 +1,13 @@
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <div class="fadeIn first">
+        <img src="https://static.vecteezy.com/system/resources/previews/000/595/164/large_2x/vector-object-and-icons-for-sport-label-gym-badge-fitness-logo-design.jpg" id="icon" alt="User Icon" />
+    </div>
+    <form>
+        <input type="text" [(ngModel)]="objUser.name" id="name" class="fadeIn second" name="name" placeholder="Nombre">
+        <input type="text" [(ngModel)]="objUser.email" id="email" class="fadeIn second" name="email" placeholder="Correo">
+        <input type="password" [(ngModel)]="objUser.password" id="password" class="fadeIn third" name="password" placeholder="Password">
+        <input type="submit" (click)="onSubmit()" class="fadeIn fourth" value="Registrarse">
+    </form>
+    </div>
+</div>

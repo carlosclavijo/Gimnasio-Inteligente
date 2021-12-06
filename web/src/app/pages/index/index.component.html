@@ -1,0 +1,84 @@
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand text-light" href="Index.html">Gimnasio Inteligente</a>
+    <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    <form class="d-inline">
+        <div *ngIf="dato == null then sesionCerrada;" >
+        </div>
+        <div *ngIf="dato != null then sesionAbierta" >
+        </div>
+    </form>
+</nav>
+<div class="container mt-3">
+    <select class="form-select form-select-sm" aria-label=".form-select-lg example" [(ngModel)]="valorOpcion"  [value]="valorOpcion" (change)="cambioOpcion()">
+        <option value="1" id="optionRutina" selected>Rutinas</option>
+        <option value="2" id="optionEjercicios">Ejercicios</option>
+    </select>
+    <div class="row">
+        <div *ngIf="valorOpcion == 1 then option1;" >
+        </div>
+        <div *ngIf="valorOpcion == 2 then option2;" >
+        </div>
+    </div>
+</div>
+<ng-template #mymodal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">{{rutinaActual.nombre}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <b>De: <span id="rutinaCreador">{{rutinaActual.nombreCreador}}</span></b>
+        <p><b>Descripción: </b><span id="rutinaDescripcion">{{rutinaActual.descripcion}}</span></p>
+        <p class="card-subtext">Puntuación: </p>
+    </div>
+    <h4 class="card-title ml-3">Ejercicio</h4>
+    <div class="col-sm-4 mt-1" *ngFor="let item of rutinaActual.ejercicios">
+        <p class="card-subtext">Nombre: {{item.nombre}}</p>
+        <p class="card-subtext">Subido por: {{item.nombreCreador}}</p>
+        <p class="card-subtext">Descripcion: {{item.descripcion}}</p>
+        <button type="button" class="btn btn-outline-dark">Ver ejercicio</button>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+    </div>
+</ng-template>
+<ng-template #option1>
+    <div class="col-sm-4 mt-5" *ngFor="let item of listaRutinas">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title rutina">{{item.nombre}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted creador">{{item.nombreCreador}}</h6>
+                <p class="card-text descripcion">{{item.descripcion}}</p>
+                <button type="button" class="btn btn-primary" (click)="open(mymodal, item)">Ver Rutina</button>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<ng-template #option2>
+    <div class="col-sm-4 mt-5" *ngFor="let item of listaEjercicios">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title rutina">{{item.nombre}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted creador">{{item.nombreCreador}}</h6>
+                <p class="card-text descripcion">{{item.descripcion}}</p>
+                <button type="button" class="btn btn-primary">Ver Ejercicios</button>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<ng-template #sesionCerrada>
+    <button type="button" class="d-inline btn btn-light mr-2" [routerLink]="['/login']">Iniciar Sesión</button>
+        <pre class="d-inline">   </pre>
+        <button type="button" class="d-inline btn btn-warning" [routerLink]="['/registro']">Registrarse</button>
+        <pre class="d-inline">   </pre>
+</ng-template>
+<ng-template #sesionAbierta>
+    <button type="button" class="d-inline btn btn-light mr-2" (click)="perfil()">Perfi</button>
+    <pre class="d-inline">   </pre>
+    <button type="button" class="d-inline btn btn-warning" (click)="cerrarSesion()">Cerrar Sesion</button>
+    <pre class="d-inline">   </pre>
+</ng-template>
