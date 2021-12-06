@@ -17,6 +17,8 @@ class CreateRutinasTable extends Migration
             $table->id();
             $table->string("nombre", 50);
             $table->integer("visibilidad")->comment("0 = privado, 1 = restringido, 2 = público");
+            $table->string("descripcion")->nullable();
+            $table->integer("puntuacion")->nullable();
             $table->bigInteger("idCreador")->unsigned();
             $table->foreign("idCreador")->references("id")->on("users")->onDelete("cascade");
             $table->timestamps();

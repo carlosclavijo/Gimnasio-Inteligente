@@ -84,4 +84,5 @@ class FotoController extends Controller
         }
         return response()->json(['Response' => true]);
     }
+
 }

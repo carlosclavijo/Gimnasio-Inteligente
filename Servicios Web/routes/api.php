@@ -8,8 +8,9 @@ use App\Http\Controllers\EjercicioController;
 use App\Http\Controllers\FotoController;
 use App\Http\Controllers\NotificacionController;
 use App\Http\Controllers\SuscripcionController;
-use App\Http\Controllers\RutinaHasEjercicioController;
-use App\Http\Controllers\EjercicioHasPuntuacionController;
+use App\Http\Controllers\RutinaEjercicioController;
+use App\Http\Controllers\EjercicioPuntuacionController;
+use App\Http\Controllers\RutinaPuntuacionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //Users
 Route::get('/user', [UserController::class, 'index']);
 Route::get('/user/{id}', [UserController::class, 'show']);
-Route::post('/user', [UserController::class, 'store']);
+Route::post('/user/registro', [UserController::class, 'store']);
+Route::post('/user/login', [UserController::class, 'login']);
 Route::put('/user/{id}', [UserController::class, 'update']);
 Route::delete('/user/{id}', [UserController::class, 'destroy']);
 
@@ -46,6 +48,7 @@ Route::get('/ejercicio/{id}', [EjercicioController::class, 'show']);
 Route::post('/ejercicio', [EjercicioController::class, 'store']);
 Route::put('/ejercicio/{id}', [EjercicioController::class, 'update']);
 Route::delete('/ejercicio/{id}', [EjercicioController::class, 'destroy']);
+Route::post('ejercicio/subirFotos/{id}', [EjercicioController::class,'subirFoto']);
 
 //Fotos
 Route::get('/foto', [FotoController::class, 'index']);
@@ -69,15 +72,23 @@ Route::put('/notificacion/{id}', [NotificacionController::class, 'update']);
 Route::delete('/notificacion/{id}', [NotificacionController::class, 'destroy']);
 
 //RutinaHasEjercicios
-Route::get('/rutinahasejercicio', [RutinaHasEjercicioController::class, 'index']);
-Route::get('/rutinahasejercicio/{id}', [RutinaHasEjercicioController::class, 'show']);
-Route::post('/rutinahasejercicio', [RutinaHasEjercicioController::class, 'store']);
-Route::put('/rutinahasejercicio/{id}', [RutinaHasEjercicioController::class, 'update']);
-Route::delete('/rutinahasejercicio/{id}', [RutinaHasEjercicioController::class, 'destroy']);
+Route::get('/rutinaejercicio', [RutinaEjercicioController::class, 'index']);
+Route::get('/rutinaejercicio/{id}', [RutinaEjercicioController::class, 'show']);
+Route::post('/rutinaejercicio', [RutinaEjercicioController::class, 'store']);
+Route::put('/rutinaejercicio/{id}', [RutinaEjercicioController::class, 'update']);
+Route::delete('/rutinaejercicio/{id}', [RutinaEjercicioController::class, 'destroy']);
 
 //RutinaHasPuntuacion
-Route::get('/ejerciciohaspuntuacion', [EjercicioHasPuntuacionController::class, 'index']);
-Route::get('/ejerciciohaspuntuacion/{id}', [EjercicioHasPuntuacionController::class, 'show']);
-Route::post('/ejerciciohaspuntuacion', [EjercicioHasPuntuacionController::class, 'store']);
-Route::put('/ejerciciohaspuntuacion/{id}', [EjercicioHasPuntuacionController::class, 'update']);
-Route::delete('/ejerciciohaspuntuacion/{id}', [EjercicioHasPuntuacionController::class, 'destroy']);
+Route::get('/rutinapuntuacion', [RutinaPuntuacionController::class, 'index']);
+Route::get('/rutinapuntuacion/{id}', [RutinaPuntuacionController::class, 'show']);
+Route::post('/rutinapuntuacion', [RutinaPuntuacionController::class, 'store']);
+Route::put('/rutinapuntuacion/{id}', [RutinaPuntuacionController::class, 'update']);
+Route::delete('/rutinapuntuacion/{id}', [RutinaPuntuacionController::class, 'destroy']);
+
+//EjercicioPuntuacion
+Route::get('/ejerciciopuntuacion', [EjercicioPuntuacionController::class, 'index']);
+Route::get('/ejerciciopuntuacion/{id}', [EjercicioPuntuacionController::class, 'show']);
+Route::post('/ejerciciopuntuacion', [EjercicioPuntuacionController::class, 'store']);
+Route::put('/ejerciciopuntuacion/{id}', [EjercicioPuntuacionController::class, 'update']);
+Route::delete('/ejerciciopuntuacion/{id}', [EjercicioPuntuacionController::class, 'destroy']);
+

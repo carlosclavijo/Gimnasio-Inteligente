@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\EjercicioHasPuntuacion;
+use App\Models\Ejerciciopuntuacion;
 use Illuminate\Http\Request;
 
-class EjercicioHasPuntuacionController extends Controller
+class EjercicioPuntuacionController extends Controller
 {
     public function index()
     {
         try {
-            $ListEjercicioHasPuntuacions = EjercicioHasPuntuacion::all();
+            $ListEjercicioHasPuntuacions = Ejerciciopuntuacion::all();
         }
         catch (\Exception $e) {
             return response()->json(['Response' => false, 'Message' => 'Se ha producido un error']);
@@ -21,14 +21,14 @@ class EjercicioHasPuntuacionController extends Controller
     public function show($idEjercicioHasPuntuacion)
     {
         try {
-            $objEjercicioHasPuntuacion = ejercicioHasPuntuacion::find($idEjercicioHasPuntuacion);
+            $objEjercicioHasPuntuacion = Ejerciciopuntuacion::find($idEjercicioHasPuntuacion);
             if($objEjercicioHasPuntuacion == null) {
-                return response()->json(['Response' => false, 'Message' => 'Error, EjercicioHasPuntuacion no encontrado']);
+                return response()->json(['Response' => false, 'Message' => 'Error, Ejerciciopuntuacion no encontrado']);
             }
         } catch (\Exception $e) {
             return response()->json(['Response' => false, 'Message' => 'Se ha producido un error']);
         }
-        return response()->json(['Response' => true, 'EjercicioHasPuntuacion' => $objEjercicioHasPuntuacion]);
+        return response()->json(['Response' => true, 'Ejerciciopuntuacion' => $objEjercicioHasPuntuacion]);
     }
 
     public function store(Request $request)
@@ -41,7 +41,7 @@ class EjercicioHasPuntuacionController extends Controller
         if($validator->fails()) {
             return response()->json(["Response" => false, "validator" => $validator->messages()]);
         }
-        $objEjercicioHasPuntuacion = new EjercicioHasPuntuacion();
+        $objEjercicioHasPuntuacion = new Ejerciciopuntuacion();
         $objEjercicioHasPuntuacion->puntuacion = $request->json("puntuacion");
         $objEjercicioHasPuntuacion->idUsuario = $request->json("idUsuario");
         $objEjercicioHasPuntuacion->idEjercicio = $request->json("idEjercicio");
@@ -50,14 +50,14 @@ class EjercicioHasPuntuacionController extends Controller
         } catch (\Exception $e) {
             return response()->json(['Response' => false, 'Message' => $e]);
         }
-        return response()->json(['Response' => true,  'id' => $objEjercicioHasPuntuacion->id, 'EjercicioHasPuntuacion' => $objEjercicioHasPuntuacion]);
+        return response()->json(['Response' => true,  'id' => $objEjercicioHasPuntuacion->id, 'Ejerciciopuntuacion' => $objEjercicioHasPuntuacion]);
     }
 
     public function update(Request $request, $idEjercicioHasPuntuacion)
     {
-        $objEjercicioHasPuntuacion = EjercicioHasPuntuacion::find($idEjercicioHasPuntuacion);
+        $objEjercicioHasPuntuacion = Ejerciciopuntuacion::find($idEjercicioHasPuntuacion);
         if($objEjercicioHasPuntuacion == null) {
-            return response()->json(['Response' => false, 'Message' => 'Error, EjercicioHasPuntuacion no encontrado']);
+            return response()->json(['Response' => false, 'Message' => 'Error, Ejerciciopuntuacion no encontrado']);
         }
         if($request->json('idUsuario') != null) {
             $objEjercicioHasPuntuacion->idUsuario = $request->json('idUsuario');
@@ -78,9 +78,9 @@ class EjercicioHasPuntuacionController extends Controller
 
     public function destroy($idEjercicioHasPuntuacion)
     {
-        $objEjercicioHasPuntuacion = ejercicioHasPuntuacion::find($idEjercicioHasPuntuacion);
+        $objEjercicioHasPuntuacion = Ejerciciopuntuacion::find($idEjercicioHasPuntuacion);
         if($objEjercicioHasPuntuacion == null) {
-            return response()->json(['Response' => false, 'Message' => 'Error, EjercicioHasPuntuacion no encontrado']);
+            return response()->json(['Response' => false, 'Message' => 'Error, Ejerciciopuntuacion no encontrado']);
         }
         try {
             $objEjercicioHasPuntuacion->delete();

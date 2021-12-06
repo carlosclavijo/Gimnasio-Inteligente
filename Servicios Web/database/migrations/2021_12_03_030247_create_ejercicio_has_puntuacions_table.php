@@ -13,7 +13,7 @@ class CreateEjercicioHasPuntuacionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ejercicio_has_puntuacions', function (Blueprint $table) {
+        Schema::create('ejerciciopuntuacions', function (Blueprint $table) {
             $table->id();
             $table->integer("puntuacion");
             $table->bigInteger("idUsuario")->unsigned();

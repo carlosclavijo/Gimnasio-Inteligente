@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\RutinaHasPuntuacion;
+use App\Models\Rutinapuntuacion;
 use Illuminate\Http\Request;
 
-class RutinaHasPuntuacionController extends Controller
+class RutinaPuntuacionController extends Controller
 {
     public function index()
     {
         try {
-            $ListRutinaHasPuntuacions = RutinaHasPuntuacion::all();
+            $ListRutinaHasPuntuacions = Rutinapuntuacion::all();
         }
         catch (\Exception $e) {
             return response()->json(['Response' => false, 'Message' => 'Se ha producido un error']);
@@ -21,14 +21,14 @@ class RutinaHasPuntuacionController extends Controller
     public function show($idRutinaHasPuntuacion)
     {
         try {
-            $objRutinaHasPuntuacion = RutinaHasPuntuacion::find($idRutinaHasPuntuacion);
+            $objRutinaHasPuntuacion = Rutinapuntuacion::find($idRutinaHasPuntuacion);
             if($objRutinaHasPuntuacion == null) {
-                return response()->json(['Response' => false, 'Message' => 'Error, RutinaHasPuntuacion no encontrado']);
+                return response()->json(['Response' => false, 'Message' => 'Error, Rutinapuntuacion no encontrado']);
             }
         } catch (\Exception $e) {
             return response()->json(['Response' => false, 'Message' => 'Se ha producido un error']);
         }
-        return response()->json(['Response' => true, 'RutinaHasPuntuacion' => $objRutinaHasPuntuacion]);
+        return response()->json(['Response' => true, 'Rutinapuntuacion' => $objRutinaHasPuntuacion]);
     }
 
     public function store(Request $request)
@@ -41,7 +41,7 @@ class RutinaHasPuntuacionController extends Controller
         if($validator->fails()) {
             return response()->json(["Response" => false, "validator" => $validator->messages()]);
         }
-        $objRutinaHasPuntuacion = new RutinaHasPuntuacion();
+        $objRutinaHasPuntuacion = new Rutinapuntuacion();
         $objRutinaHasPuntuacion->puntuacion = $request->json("puntuacion");
         $objRutinaHasPuntuacion->idUsuario = $request->json("idUsuario");
         $objRutinaHasPuntuacion->idRutina = $request->json("idRutina");
@@ -50,14 +50,14 @@ class RutinaHasPuntuacionController extends Controller
         } catch (\Exception $e) {
             return response()->json(['Response' => false, 'Message' => $e]);
         }
-        return response()->json(['Response' => true,  'id' => $objRutinaHasPuntuacion->id, 'RutinaHasPuntuacion' => $objRutinaHasPuntuacion]);
+        return response()->json(['Response' => true,  'id' => $objRutinaHasPuntuacion->id, 'Rutinapuntuacion' => $objRutinaHasPuntuacion]);
     }
 
     public function update(Request $request, $idRutinaHasPuntuacion)
     {
-        $objRutinaHasPuntuacion = RutinaHasPuntuacion::find($idRutinaHasPuntuacion);
+        $objRutinaHasPuntuacion = Rutinapuntuacion::find($idRutinaHasPuntuacion);
         if($objRutinaHasPuntuacion == null) {
-            return response()->json(['Response' => false, 'Message' => 'Error, RutinaHasPuntuacion no encontrado']);
+            return response()->json(['Response' => false, 'Message' => 'Error, Rutinapuntuacion no encontrado']);
         }
         if($request->json('idRutina') != null) {
             $objRutinaHasPuntuacion->idRutina = $request->json('idRutina');
@@ -75,9 +75,9 @@ class RutinaHasPuntuacionController extends Controller
 
     public function destroy($idRutinaHasPuntuacion)
     {
-        $objRutinaHasPuntuacion = RutinaHasPuntuacion::find($idRutinaHasPuntuacion);
+        $objRutinaHasPuntuacion = Rutinapuntuacion::find($idRutinaHasPuntuacion);
         if($objRutinaHasPuntuacion == null) {
-            return response()->json(['Response' => false, 'Message' => 'Error, RutinaHasPuntuacion no encontrado']);
+            return response()->json(['Response' => false, 'Message' => 'Error, Rutinapuntuacion no encontrado']);
         }
         try {
             $objRutinaHasPuntuacion->delete();
@@ -85,5 +85,9 @@ class RutinaHasPuntuacionController extends Controller
             return response()->json(['Response' => false, 'Message' => 'Se ha producido un error']);
         }
         return response()->json(['Response' => true]);
+    }
+
+    public function getAllPuntuaciones() {
+
     }
 }

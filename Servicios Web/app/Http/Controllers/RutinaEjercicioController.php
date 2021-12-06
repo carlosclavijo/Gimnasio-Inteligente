@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\RutinaHasEjercicio;
+use App\Models\Rutinaejercicio;
 use Illuminate\Http\Request;
 
-class RutinaHasEjercicioController extends Controller
+class RutinaEjercicioController extends Controller
 {
     public function index()
     {
         try {
-            $ListRutinaHasEjercicios = RutinaHasEjercicio::all();
+            $ListRutinaHasEjercicios = Rutinaejercicio::all();
         }
         catch (\Exception $e) {
             return response()->json(['Response' => false, 'Message' => 'Se ha producido un error']);
@@ -21,7 +21,7 @@ class RutinaHasEjercicioController extends Controller
     public function show($idRutinaHasEjercicio)
     {
         try {
-            $objRutinaHasEjercicio = RutinaHasEjercicio::find($idRutinaHasEjercicio);
+            $objRutinaHasEjercicio = Rutinaejercicio::find($idRutinaHasEjercicio);
             if($objRutinaHasEjercicio == null) {
                 return response()->json(['Response' => false, 'Message' => 'Error, RutinaHasEjercicio no encontrado']);
             }
@@ -40,7 +40,7 @@ class RutinaHasEjercicioController extends Controller
         if($validator->fails()) {
             return response()->json(["Response" => false, "validator" => $validator->messages()]);
         }
-        $objRutinaHasEjercicio = new RutinaHasEjercicio();
+        $objRutinaHasEjercicio = new Rutinaejercicio();
         $objRutinaHasEjercicio->idRutina = $request->json("idRutina");
         $objRutinaHasEjercicio->idEjercicio =  $request->json("idEjercicio");
         try {
@@ -53,7 +53,7 @@ class RutinaHasEjercicioController extends Controller
 
     public function update(Request $request, $idRutinaHasEjercicio)
     {
-        $objRutinaHasEjercicio = RutinaHasEjercicio::find($idRutinaHasEjercicio);
+        $objRutinaHasEjercicio = Rutinaejercicio::find($idRutinaHasEjercicio);
         if($objRutinaHasEjercicio == null) {
             return response()->json(['Response' => false, 'Message' => 'Error, RutinaHasEjercicio no encontrado']);
         }
@@ -73,7 +73,7 @@ class RutinaHasEjercicioController extends Controller
 
     public function destroy($idRutinaHasEjercicio)
     {
-        $objRutinaHasEjercicio = RutinaHasEjercicio::find($idRutinaHasEjercicio);
+        $objRutinaHasEjercicio = Rutinaejercicio::find($idRutinaHasEjercicio);
         if($objRutinaHasEjercicio == null) {
             return response()->json(['Response' => false, 'Message' => 'Error, RutinaHasEjercicio no encontrado']);
         }

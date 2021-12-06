@@ -48,9 +48,9 @@ class UserController extends Controller
         try {
             $objUser->save();
         } catch (\Exception $e) {
-            return response()->json(['Response' => false, 'Message' => $e]);
+            return response()->json(['Response' => false, 'Message' => "Error"]);
         }
-        return response()->json(['Response' => true,  'id' => $objUser->id, 'User' => $objUser]);
+        return response()->json(['Response' => true, 'Message' => "Su registro fue exitoso", 'Id' => $objUser->id, 'User' => $objUser]);
     }
 
     public function update(Request $request, $idUser)
@@ -88,6 +88,26 @@ class UserController extends Controller
             return response()->json(['Response' => false, 'Message' => 'Se ha producido un error']);
         }
         return response()->json(['Response' => true]);
+    }
+
+    public function login(Request $request)
+    {
+        $validator = \Validator::make($request->json()->all(), [
+            'email' => ['required', 'string'],
+            'password' => ['required', 'string'],
+        ]);
+        if($validator->fails()) {
+            return response()->json(["Response" => false, "validator" => $validator->messages()]);
+        }
+        $listUsers = User::all();
+        foreach ($listUsers as  $user) {
+            if($user->email == $request->json("email") && $user->password == $request->json("password")) {
+                return response()->json(['Response' => true, 'Message' => "Login exitoso", 'id' => $user->id]);
+            } else if($user->email == $request->json("email") && $user->password != $request->json("password")) {
+                return response()->json(['Response' => false, 'Message' => "Contraseña incorrecta", 'id' => $user->id]);
+            }
+            return response()->json(['Response' => false, 'Message' => "No pudo ingresar", 'Id' => $user->id]);
+        }
     }
 
 }

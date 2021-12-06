@@ -13,7 +13,7 @@ class CreateRutinaHasEjerciciosTable extends Migration
      */
     public function up()
     {
-        Schema::create('rutina_has_ejercicios', function (Blueprint $table) {
+        Schema::create('rutinaejercicios', function (Blueprint $table) {
             $table->id();
             $table->bigInteger("idRutina")->unsigned();
             $table->foreign("idRutina")->references("id")->on("rutinas")->onDelete("cascade");

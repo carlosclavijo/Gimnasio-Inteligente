@@ -13,7 +13,7 @@ class CreateRutinaHasPuntuacionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('rutina_has_puntuacions', function (Blueprint $table) {
+        Schema::create('rutinapuntuacions', function (Blueprint $table) {
             $table->id();
             $table->integer("puntuacion");
             $table->bigInteger("idUsuario")->unsigned();
